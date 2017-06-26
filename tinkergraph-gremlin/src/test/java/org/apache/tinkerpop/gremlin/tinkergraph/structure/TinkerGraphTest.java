@@ -38,6 +38,7 @@ import org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONReader;
 import org.apache.tinkerpop.gremlin.structure.io.graphson.GraphSONWriter;
 import org.apache.tinkerpop.gremlin.structure.io.gryo.GryoClassResolverV1d0;
 import org.apache.tinkerpop.gremlin.structure.io.gryo.GryoMapper;
+import org.apache.tinkerpop.gremlin.structure.io.gryo.GryoVersion;
 import org.apache.tinkerpop.gremlin.structure.io.gryo.GryoWriter;
 import org.apache.tinkerpop.gremlin.util.iterator.IteratorUtils;
 import org.apache.tinkerpop.shaded.jackson.databind.ObjectMapper;
@@ -543,7 +544,7 @@ public class TinkerGraphTest {
         final ArrayList<Color> colorList = new ArrayList<>(Arrays.asList(Color.RED, Color.GREEN));
 
         final Supplier<ClassResolver> classResolver = new CustomClassResolverSupplier();
-        final GryoMapper mapper = GryoMapper.build().addRegistry(TinkerIoRegistryV1d0.instance()).classResolver(classResolver).create();
+        final GryoMapper mapper = GryoMapper.build().version(GryoVersion.V3_0).addRegistry(TinkerIoRegistryV3d0.instance()).classResolver(classResolver).create();
         final Kryo kryo = mapper.createMapper();
         try (final ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
             final Output out = new Output(stream);
@@ -571,7 +572,7 @@ public class TinkerGraphTest {
         final ArrayList<Color> colorList = new ArrayList<>(Arrays.asList(Color.RED, Color.GREEN));
 
         final Supplier<ClassResolver> classResolver = new CustomClassResolverSupplier();
-        final GryoMapper mapper = GryoMapper.build().addRegistry(TinkerIoRegistryV1d0.instance()).classResolver(classResolver).create();
+        final GryoMapper mapper = GryoMapper.build().version(GryoVersion.V3_0).addRegistry(TinkerIoRegistryV3d0.instance()).classResolver(classResolver).create();
         final Kryo kryo = mapper.createMapper();
         try (final ByteArrayOutputStream stream = new ByteArrayOutputStream()) {
             final Output out = new Output(stream);

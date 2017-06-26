@@ -52,7 +52,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.tinkerpop.gremlin.process.traversal.step.util.Tree;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 /**
@@ -226,7 +225,7 @@ public class SerializationTest {
             assertNotNull(after);
             assertEquals(before.getMetrics().size(), after.getMetrics().size());
             assertEquals(before.getDuration(TimeUnit.MILLISECONDS), after.getDuration(TimeUnit.MILLISECONDS));
-            assertEquals(before.getMetrics(0).getCounts(), after.getMetrics(0).getCounts());
+            assertEquals(before.getMetrics(0).getCounts(), after.getMetrics().stream().findFirst().get().getCounts());
         }
         
         @Test
